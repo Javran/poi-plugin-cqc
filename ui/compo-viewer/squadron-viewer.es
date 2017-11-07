@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { PureComponent } from 'react'
 import { Panel } from 'react-bootstrap'
 
@@ -23,7 +24,7 @@ class SquadronViewer extends PureComponent {
           }}
         >
           {
-            squadron.slots.map(equip => (
+            _.compact(squadron.slots).map(equip => (
               <EquipViewer
                 key={equip.rstId}
                 equip={equip}
