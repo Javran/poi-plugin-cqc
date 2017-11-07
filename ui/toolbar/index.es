@@ -1,5 +1,6 @@
 import domtoimage from 'dom-to-image'
 import { createStructuredSelector } from 'reselect'
+import { compressToEncodedURIComponent } from 'lz-string'
 import React, { PureComponent } from 'react'
 import { shell, clipboard } from 'electron'
 import { connect } from 'react-redux'
@@ -13,8 +14,7 @@ import FontAwesome from 'react-fontawesome'
 
 import { PTyp } from '../../ptyp'
 import { currentCompoInfoSelector } from '../../selectors'
-import { cqcToDeckBuilder } from '../../misc'
-
+import { cqcToDeckBuilder, cqcToWctf } from '../../misc'
 
 const { remote } = window
 
@@ -51,6 +51,14 @@ class ToolbarImpl extends PureComponent {
     success(`Copied to clipboard (${new Date()})`)
   }
 
+  handleExportWctf = () => {
+    const {compo} = this.props
+    const wData = cqcToWctf(compo)
+    const encoded = compressToEncodedURIComponent(JSON.stringify(wData))
+    const rnd = Number(new Date())
+    shell.openExternal(`http://fleet.diablohu.com/fleets/build/?i=${rnd}&d=${encoded}`)
+  }
+
   render() {
     return (
       <ButtonToolbar>
@@ -74,13 +82,11 @@ class ToolbarImpl extends PureComponent {
           >
             DeckBuilder (Clipboard)
           </MenuItem>
-          {
-            /*
-          <MenuItem>
+          <MenuItem
+            onClick={this.handleExportWctf}
+          >
             WhoCallsTheFleet
           </MenuItem>
-            */
-          }
         </DropdownButton>
       </ButtonToolbar>
     )

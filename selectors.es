@@ -7,6 +7,7 @@ import {
   shipsSelector,
   fleetsSelector,
   extensionSelectorFactory,
+  basicSelector,
 } from 'views/utils/selectors'
 
 import { initState } from './store'
@@ -181,8 +182,10 @@ const currentCompoInfoSelector = createSelector(
   fleetInfoFuncSelector,
   showPartSelector,
   squadronInfoFuncSelector,
-  (fleetInfoFunc, showPart, squadronInfoFunc) => ({
+  basicSelector,
+  (fleetInfoFunc, showPart, squadronInfoFunc, basic) => ({
     version: latestVersion,
+    hqLevel: _.isInteger(basic.api_level) ? basic.api_level : null,
     fleets: _.compact(
       [1,2,3,4].map(fleetId =>
         showPart.fleets[fleetId] ? fleetInfoFunc(fleetId) : null

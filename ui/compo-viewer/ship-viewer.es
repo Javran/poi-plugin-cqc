@@ -12,7 +12,14 @@ class ShipViewer extends PureComponent {
     const {ship, style} = this.props
     return (
       <div style={style}>
-        <div style={{fontWeight: 'bold'}}>{ship.name}</div>
+        <div style={{
+          fontWeight: 'bold',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+        }}>
+          {ship.name}
+        </div>
         <div style={{fontSize: '90%'}}>
           <span>Lv. {ship.level}</span>
           {

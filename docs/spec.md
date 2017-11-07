@@ -13,6 +13,7 @@ and assigned value `null` if it's not present.
 ```
 {
   version: '0.0.1',
+  hqLevel: <number>, // optional
   name: <string>, // optional
   desc: <string>, // optional
   fleets: <Array of Fleet>, // optional
