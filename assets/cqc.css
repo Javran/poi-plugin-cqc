@@ -1,0 +1,19 @@
+#poi-plugin-cqc .fleet-viewer,
+#poi-plugin-cqc .squadron-viewer {
+    margin-bottom: 5px;
+}
+
+#poi-plugin-cqc .fleet-viewer > .panel-heading,
+#poi-plugin-cqc .squadron-viewer > .panel-heading {
+    padding: 5px;
+}
+
+#poi-plugin-cqc .fleet-viewer > .panel-body,
+#poi-plugin-cqc .squadron-viewer > .panel-body {
+    padding: 5px;
+}
+
+#poi-plugin-cqc .slotitem-img {
+    width: 1.8em;
+    height: 1.8em;
+}
