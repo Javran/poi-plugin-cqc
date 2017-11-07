@@ -1,6 +1,7 @@
 import domtoimage from 'dom-to-image'
 import { createStructuredSelector } from 'reselect'
 import React, { PureComponent } from 'react'
+import { shell, clipboard } from 'electron'
 import { connect } from 'react-redux'
 import {
   ButtonToolbar,
@@ -13,6 +14,7 @@ import FontAwesome from 'react-fontawesome'
 import { PTyp } from '../../ptyp'
 import { currentCompoInfoSelector } from '../../selectors'
 import { cqcToDeckBuilder } from '../../misc'
+
 
 const { remote } = window
 
@@ -36,7 +38,17 @@ class ToolbarImpl extends PureComponent {
 
   handleExportDeckBuilder = () => {
     const {compo} = this.props
-    console.log(JSON.stringify(cqcToDeckBuilder(compo)))
+    const encoded =
+      encodeURIComponent(JSON.stringify(cqcToDeckBuilder(compo)))
+    shell.openExternal(`http://kancolle-calc.net/deckbuilder.html?predeck=${encoded}`)
+  }
+
+  handleExportDeckBuilderClipboard = () => {
+    const {compo} = this.props
+    const encoded = JSON.stringify(cqcToDeckBuilder(compo))
+    clipboard.writeText(encoded)
+    const {success} = window
+    success(`Copied to clipboard (${new Date()})`)
   }
 
   render() {
@@ -58,12 +70,17 @@ class ToolbarImpl extends PureComponent {
             DeckBuilder
           </MenuItem>
           <MenuItem
+            onClick={this.handleExportDeckBuilderClipboard}
           >
             DeckBuilder (Clipboard)
           </MenuItem>
+          {
+            /*
           <MenuItem>
             WhoCallsTheFleet
           </MenuItem>
+            */
+          }
         </DropdownButton>
       </ButtonToolbar>
     )
