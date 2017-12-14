@@ -1,23 +1,25 @@
-This document defines composition representation used by CQC.
+This document defines CQC format - a representation of fleet and LBAS composition for Kantai Collection
+which can be stored as files.
 
 # File Structure
 
-File extension is `.cqc.json`. File content is an Object encoded in JSON.
+The file extension is `.cqc.json`. File content is a single JSON Object that I call "CQC structure"
+(see section `Data Structure` below).
 
-# Data Structure
+As it's a strict subset of JSON, all constraints about JSON applies: `NaN`, `Infinity`, `undefined`, etc. are not representable.
 
-An optional field can either be a `null`, or not present at all.
-However, in runtime representation an optional field shall be guaranteed to exist
-and assigned value `null` if it's not present.
+# `CQC` structure
+
+Unless explicitly stated, all fields are optional, which can either be a `null`, or not present at all.
 
 ```
 {
-  version: '0.0.1',
-  hqLevel: <number>, // optional
-  name: <string>, // optional
-  desc: <string>, // optional
-  fleets: <Array of Fleet>, // optional
-  airbase: <Array of Squadron>, // optional
+  version: '0.0.1', // required
+  hqLevel: <number>,
+  name: <string>, // name of this composition
+  desc: <string>, // description of this composition
+  fleets: <Array of Fleet>,
+  airbase: <Array of Squadron>,
 }
 ```
 
@@ -25,8 +27,8 @@ and assigned value `null` if it's not present.
 
 ```
 {
-  name: <string>, // optional
-  ships: <Array of Ship>, // optional
+  name: <string>, // fleet name
+  ships: <Array of Ship>,
 }
 ```
 
@@ -34,14 +36,14 @@ and assigned value `null` if it's not present.
 
 ```
 {
-  mstId: <int>,
-  rstId: <int>, // optional
-  level: <int>, // optional
-  luck: <int>, // optional
-  asw: <int>, // optional
-  hp: <int>, // optional
-  slots: <Array of Equip>, // optional
-  exSlot: <Equip>, // optional
+  mstId: <int>, // required
+  rstId: <int>, // rosterId of this ship
+  level: <int>,
+  luck: <int>,
+  asw: <int>,
+  hp: <int>, // maxhp
+  slots: <Array of Equip>, // should not include extra slot
+  exSlot: <Equip>,
 }
 ```
 
@@ -49,10 +51,10 @@ and assigned value `null` if it's not present.
 
 ```
 {
-  mstId: <int>,
-  rstId: <int>, // optional
-  ace: <int>, // optional, 0~7
-  imp: <int>, // optional 0~10
+  mstId: <int>, // required
+  rstId: <int>,
+  ace: <int>, // number range: 0~7, must be integer
+  imp: <int>, // number range: 0~10, must be integer
 }
 ```
 
@@ -60,7 +62,7 @@ and assigned value `null` if it's not present.
 
 ```
 {
-  name: <string>, // optional,
-  slots: <Array of Equip>, // optional
+  name: <string>, // name of an airbase squadron,
+  slots: <Array of Equip>,
 }
 ```
