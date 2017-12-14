@@ -16,7 +16,8 @@ const latestVersion = '0.0.1'
 
 const extSelector = createSelector(
   extensionSelectorFactory('poi-plugin-cqc'),
-  ext => _.isEmpty(ext) ? initState : ext)
+  ext => _.isEmpty(ext) ? initState : ext
+)
 
 const poiAirbaseSelector = state => state.info.airbase
 
