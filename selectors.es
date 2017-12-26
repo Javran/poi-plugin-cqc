@@ -104,7 +104,7 @@ const shipInfoFuncSelector = createSelector(
         rstId,
         level: ship.api_lv,
         luck,
-        asw: ship.api_taisen[0],
+        aswE: ship.api_taisen[0],
         hp: ship.api_maxhp,
         slots: _.compact(ship.api_slot.map(equipInfoFunc)),
         exSlot: equipInfoFunc(ship.api_slot_ex),

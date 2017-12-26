@@ -1,6 +1,9 @@
 This document defines CQC format - a representation of fleet and LBAS composition for Kantai Collection
 which can be stored as files.
 
+(TODO: note that as of version 1.1.0, this representation is only used
+in this package internally, so this spec would still change)
+
 # File Structure
 
 The file extension is `.cqc.json`. File content is a single JSON Object that I call "CQC structure"
@@ -40,12 +43,17 @@ Unless explicitly stated, all fields are optional, which can either be a `null`,
   rstId: <int>, // rosterId of this ship
   level: <int>,
   luck: <int>,
-  asw: <int>,
+  aswE: <int>,
   hp: <int>, // maxhp
   slots: <Array of Equip>, // should not include extra slot
   exSlot: <Equip>,
 }
 ```
+
+Note that `aswE` must come from `api_taisen[0]` of a ship.
+Namely suffix `E` stands for stats with equipments taking into account.
+Due to recently having equipment that gives different benefits for different ships,
+one might miscalculate naked stats. so here we prefer raw source from game.
 
 ## `Equip` structure
 
