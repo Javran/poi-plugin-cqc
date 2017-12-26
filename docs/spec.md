@@ -18,6 +18,7 @@ Unless explicitly stated, all fields are optional, which can either be a `null`,
 ```
 {
   version: '0.0.1', // required
+  date: <int>, // Number(new Date())
   hqLevel: <number>,
   name: <string>, // name of this composition
   desc: <string>, // description of this composition
