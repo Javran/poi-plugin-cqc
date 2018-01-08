@@ -18,7 +18,7 @@ class ShipViewer extends PureComponent {
           whiteSpace: 'nowrap',
           overflow: 'hidden',
         }}>
-          {ship.name}
+          {window.i18n.resources.__(ship.name)}
         </div>
         <div style={{fontSize: '90%'}}>
           <span>Lv. {ship.level}</span>

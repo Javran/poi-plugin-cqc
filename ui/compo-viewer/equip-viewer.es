@@ -57,7 +57,7 @@ class EquipViewer extends PureComponent {
             overflow: 'hidden',
           }}
         >
-          {equip.name}
+          {window.i18n.resources.__(equip.name)}
         </span>
         {
           _.isInteger(equip.ace) && equip.ace > 0 && (
