@@ -9,6 +9,8 @@ import {
   Button,
   DropdownButton,
   MenuItem,
+  Tooltip,
+  OverlayTrigger,
 } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
 
@@ -62,11 +64,18 @@ class ToolbarImpl extends PureComponent {
   render() {
     return (
       <ButtonToolbar>
-        <Button
-          onClick={this.handleRenderScreenshot}
-          style={{marginTop: 0, minWidth: '5em'}}>
-          <FontAwesome name="camera-retro" />
-        </Button>
+        <OverlayTrigger
+          placement="bottom" overlay={
+            <Tooltip>
+              Export Image
+            </Tooltip>
+          }>
+          <Button
+            onClick={this.handleRenderScreenshot}
+            style={{marginTop: 0, minWidth: '5em'}}>
+            <FontAwesome name="camera-retro" />
+          </Button>
+        </OverlayTrigger>
         <DropdownButton
           style={{marginTop: 0, minWidth: '5em'}}
           id="plugin-cqc-export"
