@@ -1,6 +1,8 @@
 #poi-plugin-cqc .fleet-viewer,
 #poi-plugin-cqc .squadron-viewer {
     margin-bottom: 5px;
+    color: white;
+    background-color: rgba(66, 66, 66, 0.6);
 }
 
 #poi-plugin-cqc .fleet-viewer > .panel-heading,
