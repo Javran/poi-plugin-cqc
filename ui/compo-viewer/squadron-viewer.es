@@ -15,24 +15,28 @@ class SquadronViewer extends PureComponent {
     return (
       <Panel
         className="squadron-viewer"
-        header={squadron.name}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-          }}
-        >
-          {
-            _.compact(squadron.slots).map(equip => (
-              <EquipViewer
-                key={equip.rstId}
-                equip={equip}
-                style={{width: '48%'}}
-              />
-            ))
-          }
-        </div>
+        <Panel.Heading>
+          {squadron.name}
+        </Panel.Heading>
+        <Panel.Body>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+            }}
+          >
+            {
+              _.compact(squadron.slots).map(equip => (
+                <EquipViewer
+                  key={equip.rstId}
+                  equip={equip}
+                  style={{width: '48%'}}
+                />
+              ))
+            }
+          </div>
+        </Panel.Body>
       </Panel>
     )
   }

@@ -13,29 +13,33 @@ class FleetViewer extends PureComponent {
     return (
       <Panel
         className="fleet-viewer"
-        header={fleet.name}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
-        >
-          {
-            fleet.ships.map(ship => (
-              <ShipViewer
-                key={ship.rstId}
-                ship={ship}
-                style={{
-                  width: '12em',
-                  marginBottom: 2,
-                  marginRight: 2,
-                }}
-              />
-            ))
-          }
-        </div>
+        <Panel.Heading>
+          {fleet.name}
+        </Panel.Heading>
+        <Panel.Body>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
+          >
+            {
+              fleet.ships.map(ship => (
+                <ShipViewer
+                  key={ship.rstId}
+                  ship={ship}
+                  style={{
+                    width: '12em',
+                    marginBottom: 2,
+                    marginRight: 2,
+                  }}
+                />
+              ))
+            }
+          </div>
+        </Panel.Body>
       </Panel>
     )
   }
