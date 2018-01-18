@@ -19,7 +19,10 @@
   "poiPlugin": {
     "title": "Closely Quick Composition",
     "priority": 91,
-    "icon": "puzzle-piece"
+    "icon": "puzzle-piece",
+    "apiVer": {
+      "8.1.0-beta.4": "0.1.2"
+    }
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
