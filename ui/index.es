@@ -1,13 +1,26 @@
 import { join } from 'path-extra'
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+
 import { Toolbar } from './toolbar'
 import { ViewControl } from './view-control'
 import { CompoViewer } from './compo-viewer'
 
-class CqcMain extends PureComponent {
+import { themeSelector } from '../selectors'
+import { PTyp } from '../ptyp'
+
+class CqcMainImpl extends PureComponent {
+  static propTypes = {
+    theme: PTyp.string.isRequired,
+  }
+
   render() {
+    const {theme} = this.props
     return (
-      <div style={{margin: 5}}>
+      <div
+        className={`theme-${theme}`}
+        style={{margin: 5}}
+      >
         <link
           rel="stylesheet"
           href={join(__dirname, '..', 'assets', 'cqc.css')}
@@ -23,5 +36,11 @@ class CqcMain extends PureComponent {
     )
   }
 }
+
+const CqcMain = connect(
+  state => ({
+    theme: themeSelector(state),
+  })
+)(CqcMainImpl)
 
 export { CqcMain }
