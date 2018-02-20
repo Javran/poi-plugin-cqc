@@ -21,7 +21,6 @@ class CompoViewerImpl extends PureComponent {
     return (
       <div
         ref={updateRef}
-        style={{marginTop: 5}}
       >
         {
           [

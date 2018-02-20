@@ -67,7 +67,11 @@ class ViewControlImpl extends PureComponent {
       `Auto (World ${autoAirbaseArea})` :
       `World ${airbaseArea}`
     return (
-      <div style={{marginTop: 5}}>
+      <div
+        style={{
+          marginTop: 5,
+          marginBottom: 5,
+        }}>
         <ButtonGroup>
           {
             [1,2,3,4].map(fleetId => (
