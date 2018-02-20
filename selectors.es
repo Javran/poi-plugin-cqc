@@ -8,6 +8,7 @@ import {
   fleetsSelector,
   extensionSelectorFactory,
   basicSelector,
+  configSelector as poiConfSelector,
 } from 'views/utils/selectors'
 
 import { initState } from './store'
@@ -200,6 +201,11 @@ const currentCompoInfoSelector = createSelector(
   })
 )
 
+const themeSelector = createSelector(
+  poiConfSelector,
+  conf => _.get(conf, 'poi.theme', 'paperdark')
+)
+
 export {
   extSelector,
   airbaseAreaSelector,
@@ -207,6 +213,6 @@ export {
   availableAirbaseAreasSelector,
   currentAirbaseAreaSelector,
   showPartSelector,
-
   currentCompoInfoSelector,
+  themeSelector,
 }
