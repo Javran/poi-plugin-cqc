@@ -20,6 +20,7 @@ class CompoViewerImpl extends PureComponent {
     } = this.props
     return (
       <div
+        className="compo-viewer"
         ref={updateRef}
       >
         {

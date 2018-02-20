@@ -1,8 +1,6 @@
 #poi-plugin-cqc .fleet-viewer,
 #poi-plugin-cqc .squadron-viewer {
     margin-bottom: 5px;
-    color: white;
-    background-color: rgba(66, 66, 66, 0.6);
 }
 
 #poi-plugin-cqc .fleet-viewer > .panel-heading,
@@ -18,4 +16,36 @@
 #poi-plugin-cqc .slotitem-img {
     width: 1.8em;
     height: 1.8em;
+}
+
+#poi-plugin-cqc .theme-darkly .panel {
+    background-color: #303030;
+}
+
+#poi-plugin-cqc .theme-slate .panel {
+    background-color: #2e3338;
+}
+
+#poi-plugin-cqc .theme-superhero .panel {
+    background-color: #546575;
+}
+
+#poi-plugin-cqc .theme-lumendark .panel {
+    background-color: #555555;
+}
+
+#poi-plugin-cqc .theme-paperdark .panel {
+    background-color: #303030;
+}
+
+#poi-plugin-cqc .theme-papercyan .panel {
+    background-color: #222222;
+}
+
+#poi-plugin-cqc .theme-paperblack .panel {
+    background-color: #424242;
+}
+
+#poi-plugin-cqc .theme-darklykai .panel {
+    background-color: #222222;
 }
