@@ -79,6 +79,7 @@ const equipInfoFuncSelector = createSelector(
         // Info only:
         name: $equip.api_name,
         iconId: $equip.api_type[3],
+        isPlane: [6, 7, 8, 9, 10, 21, 22, 33, 43].includes($equip.api_type[3]),
       }
     }
   )
@@ -109,6 +110,7 @@ const shipInfoFuncSelector = createSelector(
         hp: ship.api_maxhp,
         slots: _.compact(ship.api_slot.map(equipInfoFunc)),
         exSlot: equipInfoFunc(ship.api_slot_ex),
+        planeSlots: ship.api_onslot,
 
         // Info only:
         name: $ship.api_name,
