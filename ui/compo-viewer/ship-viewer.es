@@ -10,6 +10,7 @@ class ShipViewer extends PureComponent {
 
   render() {
     const {ship, style} = this.props
+    var counter = 0;
     return (
       <div style={style}>
         <div style={{
@@ -35,6 +36,7 @@ class ShipViewer extends PureComponent {
                 key={equip.rstId}
                 equip={equip}
                 style={{}}
+                slotSize={ship.planeSlots[counter++]}
               />
             ))
           }

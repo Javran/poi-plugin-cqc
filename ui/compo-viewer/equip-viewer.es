@@ -10,14 +10,16 @@ class EquipViewer extends PureComponent {
     equip: PTyp.object.isRequired,
     style: PTyp.object.isRequired,
     extra: PTyp.bool,
+    slotSize: PTyp.number,
   }
 
   static defaultProps = {
     extra: false,
+    slotSize: 0,
   }
 
   render() {
-    const {equip, style, extra} = this.props
+    const {equip, style, extra, slotSize} = this.props
     const iconComponent = (
       <SlotitemIcon
         className="slotitem-img"
@@ -45,6 +47,18 @@ class EquipViewer extends PureComponent {
                 }}
               >
                 +
+              </span>
+            </div>
+          ) : slotSize > 0 && equip.isPlane ? (
+            <div style={{position: 'relative'}}>
+              {iconComponent}
+              <span
+                style={{
+                  position: 'absolute',
+                  right: 7, bottom: -2,
+                }}
+              >
+                {slotSize}
               </span>
             </div>
           ) : iconComponent
