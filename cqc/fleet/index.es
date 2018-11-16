@@ -23,6 +23,4 @@ const registerFleetMethod = methodClass => {
 
 fighterPowerClasses.map(registerFleetMethod)
 
-console.log(Fleet)
-
 export { Fleet }
