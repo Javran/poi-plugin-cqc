@@ -18,6 +18,13 @@
     height: 1.8em;
 }
 
+#poi-plugin-cqc .planeslot-overlay {
+    text-shadow: 2px 1px 1px #000, 2px 1px 1px #000;
+    position: absolute;
+    right: 7px;
+    bottom: -2px;
+}
+
 #poi-plugin-cqc .theme-darkly .panel {
     background-color: #303030;
 }
