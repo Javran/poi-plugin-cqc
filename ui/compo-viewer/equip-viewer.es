@@ -52,12 +52,7 @@ class EquipViewer extends PureComponent {
           ) : slotSize > 0 && equip.isPlane ? (
             <div style={{position: 'relative'}}>
               {iconComponent}
-              <span
-                style={{
-                  position: 'absolute',
-                  right: 7, bottom: -2,
-                }}
-              >
+              <span className="planeslot-overlay">
                 {slotSize}
               </span>
             </div>
