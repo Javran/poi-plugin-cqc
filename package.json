@@ -25,6 +25,7 @@
     }
   },
   "dependencies": {
+    "blob-to-buffer": "^1.2.9",
     "dom-to-image": "^2.6.0",
     "lz-string": "^1.4.4",
     "subtender": "^0.12.2"
