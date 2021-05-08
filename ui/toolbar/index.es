@@ -20,6 +20,7 @@ import blobToBuffer from 'blob-to-buffer'
 import { PTyp } from '../../ptyp'
 import { currentCompoInfoSelector } from '../../selectors'
 import { cqcToDeckBuilder, cqcToWctf } from '../../misc'
+import { SlotDisplayControl } from './slot-display-control'
 
 const { remote } = window
 const { APPDATA_PATH } = global
@@ -42,6 +43,9 @@ const formatDate = date => {
 
   return `${datePart}T${timePart}`
 }
+
+// TODO: remove when done.
+const debugPlaneSlot = false
 
 class ToolbarImpl extends PureComponent {
   static propTypes = {
@@ -146,6 +150,7 @@ class ToolbarImpl extends PureComponent {
             WhoCallsTheFleet
           </MenuItem>
         </DropdownButton>
+        {debugPlaneSlot && (<SlotDisplayControl />)}
       </ButtonToolbar>
     )
   }
