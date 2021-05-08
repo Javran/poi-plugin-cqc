@@ -44,9 +44,6 @@ const formatDate = date => {
   return `${datePart}T${timePart}`
 }
 
-// TODO: remove when done.
-const debugPlaneSlot = false
-
 class ToolbarImpl extends PureComponent {
   static propTypes = {
     compo: PTyp.object.isRequired,
@@ -150,7 +147,7 @@ class ToolbarImpl extends PureComponent {
             WhoCallsTheFleet
           </MenuItem>
         </DropdownButton>
-        {debugPlaneSlot && (<SlotDisplayControl />)}
+        <SlotDisplayControl />
       </ButtonToolbar>
     )
   }

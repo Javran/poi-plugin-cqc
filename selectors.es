@@ -84,7 +84,45 @@ const equipInfoFuncSelector = createSelector(
         // Info only:
         name: $equip.api_name,
         iconId: $equip.api_type[3],
-        isPlane: [6, 7, 8, 9, 10, 21, 22, 33, 43].includes($equip.api_type[3]),
+        // TODO: is this info really necessary?
+        isPlane: [
+          // 艦上戦闘機
+          6,
+          // 艦上爆撃機
+          7,
+          // 艦上攻撃機
+          8,
+          // 艦上偵察機
+          9,
+          // 水上機
+          10,
+          // オートジャイロ
+          21,
+          // 対潜哨戒機
+          22,
+          // 大型飛行艇
+          33,
+          // 陸上攻撃機
+          37,
+          // 局地戦闘機
+          38,
+          // 噴式戦闘爆撃機(噴式景雲改)
+          39,
+          // 噴式戦闘爆撃機(橘花改)
+          40,
+          // 水上戦闘機
+          43,
+          // 陸軍戦闘機
+          44,
+          // 夜間戦闘機
+          45,
+          // 夜間攻撃機
+          46,
+          // 陸上対潜哨戒機
+          47,
+          // 大型陸上機
+          49,
+        ].includes($equip.api_type[3]),
       }
     }
   )
@@ -116,6 +154,7 @@ const shipInfoFuncSelector = createSelector(
         slots: _.compact(ship.api_slot.map(equipInfoFunc)),
         exSlot: equipInfoFunc(ship.api_slot_ex),
         planeSlots: ship.api_onslot,
+        planeSlotsMax: $ship.api_maxeq,
 
         // Info only:
         name: $ship.api_name,

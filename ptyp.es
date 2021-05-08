@@ -20,6 +20,8 @@ const PTyp = {
   allRequired,
 }
 
+PTyp.DisplaySlot = PTyp.oneOf([false, 'max', 'current'])
+
 export {
   PTyp,
 }

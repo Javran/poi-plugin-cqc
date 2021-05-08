@@ -19,7 +19,7 @@ import { mapDispatchToProps } from '../../store'
 class SlotDisplayControl extends PureComponent {
   static propTypes = {
     // connected:
-    displaySlot: PTyp.oneOf([false, 'max', 'current']).isRequired,
+    displaySlot: PTyp.DisplaySlot.isRequired,
     modify: PTyp.func.isRequired,
   }
 

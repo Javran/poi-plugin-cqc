@@ -7,6 +7,7 @@ A poi plugin for recording compositions.
 ### Unreleased
 
 - Some display options are now stored.
+- Can now optionally display plane slot count (Thanks to @KonatoK)
 
 ### 0.1.6
 

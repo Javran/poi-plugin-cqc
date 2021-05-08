@@ -35,7 +35,8 @@ class ShipViewer extends PureComponent {
                 key={equip.rstId}
                 equip={equip}
                 style={{}}
-                slotSize={ship.planeSlots[sInd]}
+                planeSlot={ship.planeSlots[sInd]}
+                planeSlotMax={ship.planeSlotsMax[sInd]}
               />
             ))
           }

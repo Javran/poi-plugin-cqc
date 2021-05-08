@@ -1,25 +1,53 @@
 import _ from 'lodash'
 import { join } from 'path-extra'
+import { connect } from 'react-redux'
 import React, { PureComponent } from 'react'
 import { SlotitemIcon } from 'views/components/etc/icon'
 
 import { PTyp } from '../../ptyp'
+import {
+  displaySlotSelector,
+} from '../../selectors'
 
+@connect(
+  s => ({displaySlot: displaySlotSelector(s)})
+)
 class EquipViewer extends PureComponent {
   static propTypes = {
     equip: PTyp.object.isRequired,
     style: PTyp.object.isRequired,
     extra: PTyp.bool,
-    slotSize: PTyp.number,
+    planeSlot: PTyp.number,
+    planeSlotMax: PTyp.number,
+    // connected
+    displaySlot: PTyp.DisplaySlot.isRequired,
   }
 
   static defaultProps = {
     extra: false,
-    slotSize: 0,
+    planeSlot: 0,
+    planeSlotMax: 0,
   }
 
   render() {
-    const {equip, style, extra, slotSize} = this.props
+    const {
+      equip, style, extra,
+      planeSlot, planeSlotMax,
+      displaySlot,
+    } = this.props
+
+    const numForDisplay = (() => {
+      const n =
+        displaySlot === 'max' ? planeSlotMax :
+        displaySlot === 'current' ? planeSlot :
+        null
+
+      if (!_.isInteger(n) || n <= 0) {
+        return null
+      }
+      return n
+    })()
+
     const iconComponent = (
       <SlotitemIcon
         className="slotitem-img"
@@ -49,11 +77,11 @@ class EquipViewer extends PureComponent {
                 +
               </span>
             </div>
-          ) : slotSize > 0 && equip.isPlane ? (
+          ) : numForDisplay && equip.isPlane ? (
             <div style={{position: 'relative'}}>
               {iconComponent}
               <span className="planeslot-overlay">
-                {slotSize}
+                {numForDisplay}
               </span>
             </div>
           ) : iconComponent
