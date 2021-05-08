@@ -1,6 +1,6 @@
 {
   "name": "poi-plugin-cqc",
-  "version": "0.1.6",
+  "version": "0.1.7-beta.0",
   "description": "Closely Quick Composition",
   "main": "index.es",
   "scripts": {
