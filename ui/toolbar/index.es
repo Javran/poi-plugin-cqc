@@ -159,7 +159,7 @@ class ToolbarImpl extends PureComponent {
 const Toolbar = connect(
   createStructuredSelector({
     compo: currentCompoInfoSelector,
-  }),
+  })
 )(ToolbarImpl)
 
 export { Toolbar }

@@ -25,7 +25,7 @@ const pluginDidLoad = () => {
 
     boundActionCreators.modify(_.flow(
       insertShowPart,
-      modifyObject('ready', () => true),
+      modifyObject('ready', () => true)
     ))
   })
 }

@@ -143,7 +143,7 @@ const ViewControl = connect(
     // airbase area that 'auto' would have picked
     autoAirbaseArea: autoAirbaseAreaSelector,
   }),
-  actionCreators,
+  actionCreators
 )(ViewControlImpl)
 
 export { ViewControl }

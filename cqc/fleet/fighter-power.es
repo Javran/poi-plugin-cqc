@@ -9,9 +9,7 @@ const mkFighterPowerClass = mode => {
     : console.error(`invalid mode: ${mode}`)
   /* eslint-enable indent */
 
-  const compute = fleet => {
-    return 'TODO'
-  }
+  const compute = fleet => 'TODO'
 
   return {name, compute}
 }

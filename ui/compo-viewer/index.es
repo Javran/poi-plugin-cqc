@@ -46,7 +46,7 @@ class CompoViewerImpl extends PureComponent {
 const CompoViewer = connect(
   createStructuredSelector({
     compo: currentCompoInfoSelector,
-  }),
+  })
 )(CompoViewerImpl)
 
 export { CompoViewer }

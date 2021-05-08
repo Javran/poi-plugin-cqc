@@ -67,7 +67,7 @@ const ACTION_MODIFY = '@@poi-plugin-cqc@Modify'
 
 const reducer = mkSimpleReducer(
   initState,
-  ACTION_MODIFY,
+  ACTION_MODIFY
 )
 
 const actionCreators = {
