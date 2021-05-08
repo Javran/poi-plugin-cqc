@@ -28,6 +28,7 @@
     "blob-to-buffer": "^1.2.9",
     "dom-to-image": "^2.6.0",
     "lz-string": "^1.4.4",
+    "shallowequal": "^1.1.0",
     "subtender": "^0.12.2"
   },
   "devDependencies": {

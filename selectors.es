@@ -53,6 +53,11 @@ const currentAirbaseAreaSelector = createSelector(
     airbaseArea === 'auto' ? autoAirbaseArea : airbaseArea
 )
 
+const displaySlotSelector = createSelector(
+  showPartSelector,
+  ({displaySlot}) => displaySlot
+)
+
 /*
    XXXRep is the data representation for some structure XXX
    XXXInfo should contain everything that XXXRep has, plus those needed
@@ -209,6 +214,7 @@ const themeSelector = createSelector(
 export {
   extSelector,
   airbaseAreaSelector,
+  displaySlotSelector,
   autoAirbaseAreaSelector,
   availableAirbaseAreasSelector,
   currentAirbaseAreaSelector,

@@ -1,13 +1,24 @@
 import _ from 'lodash'
 import { mkSimpleReducer } from 'subtender'
+import { bindActionCreators } from 'redux'
+import { store } from 'views/create-store'
 
 const initState = {
+  // whether persistent state has been loaded.
+  ready: false,
   // current airbase area, a number or 'auto'
   airbaseArea: 'auto',
   // which part to show
   showPart: {
     fleets: _.fromPairs([1,2,3,4].map(fleetId => [fleetId, true])),
     airbase: _.fromPairs([1,2,3].map(sqId => [sqId, true])),
+    /*
+      displaySlot:
+      - false: don't display
+      - 'max': slot num from $ship
+      - 'current': slot num from ship
+     */
+    displaySlot: false,
   },
   /*
      Contrls infomation shown for each parts,
@@ -66,8 +77,15 @@ const actionCreators = {
   }),
 }
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(actionCreators, dispatch)
+
+const boundActionCreators =
+  mapDispatchToProps(store.dispatch)
+
 export {
   initState,
   reducer,
   actionCreators,
+  boundActionCreators,
 }
