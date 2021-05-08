@@ -87,5 +87,6 @@ export {
   initState,
   reducer,
   actionCreators,
+  mapDispatchToProps,
   boundActionCreators,
 }

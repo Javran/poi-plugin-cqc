@@ -70,6 +70,7 @@ module.exports = {
     'no-mixed-operators': 'off',
     'consistent-return': 'off',
     'no-plusplus': 'off',
+    indent: ['error', 2, {flatTernaryExpressions: true}],
   },
   settings: {
     'import/resolver': {
