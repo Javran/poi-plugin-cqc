@@ -7,13 +7,13 @@ import { shell, clipboard } from 'electron'
 import path from 'path-extra'
 import { connect } from 'react-redux'
 import {
-  ButtonToolbar,
   Button,
-  DropdownButton,
+  Menu,
   MenuItem,
-  Tooltip,
-  OverlayTrigger,
-} from 'react-bootstrap'
+  Popover,
+  Position,
+  ButtonGroup,
+} from '@blueprintjs/core'
 import FontAwesome from 'react-fontawesome'
 import fs from 'fs'
 import blobToBuffer from 'blob-to-buffer'
@@ -112,43 +112,42 @@ class ToolbarImpl extends PureComponent {
   }
 
   render() {
+    const exportMenuContent = (
+      <Menu>
+        <MenuItem
+          onClick={this.handleExportDeckBuilder}
+          text="DeckBuilder"
+        />
+        <MenuItem
+          onClick={this.handleExportDeckBuilderClipboard}
+          text="DeckBuilder (Clipboard)"
+        />
+        <MenuItem
+          onClick={this.handleExportWctf}
+          text="WhoCallsTheFleet"
+        />
+      </Menu>
+    )
     return (
-      <ButtonToolbar>
-        <OverlayTrigger
-          placement="bottom" overlay={
-            <Tooltip>
-              Export Image
-            </Tooltip>
-          }>
-          <Button
-            onClick={this.handleRenderScreenshot}
-            style={{marginTop: 0, minWidth: '5em'}}>
-            <FontAwesome name="camera-retro" />
-          </Button>
-        </OverlayTrigger>
-        <DropdownButton
+      <ButtonGroup>
+        <Button
+          onClick={this.handleRenderScreenshot}
           style={{marginTop: 0, minWidth: '5em'}}
-          id="plugin-cqc-export"
-          title={<FontAwesome name="external-link" />}
         >
-          <MenuItem
-            onClick={this.handleExportDeckBuilder}
+          <FontAwesome name="camera-retro" />
+        </Button>
+        <Popover
+          content={exportMenuContent}
+          position={Position.BOTTOM}
+        >
+          <Button
+            style={{marginTop: 0, minWidth: '5em'}}
           >
-            DeckBuilder
-          </MenuItem>
-          <MenuItem
-            onClick={this.handleExportDeckBuilderClipboard}
-          >
-            DeckBuilder (Clipboard)
-          </MenuItem>
-          <MenuItem
-            onClick={this.handleExportWctf}
-          >
-            WhoCallsTheFleet
-          </MenuItem>
-        </DropdownButton>
+            <FontAwesome name="external-link" />
+          </Button>
+        </Popover>
         <SlotDisplayControl />
-      </ButtonToolbar>
+      </ButtonGroup>
     )
   }
 }

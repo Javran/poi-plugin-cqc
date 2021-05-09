@@ -68,7 +68,9 @@ class SlotDisplayControl extends PureComponent {
         content={menuContent}
         position={Position.BOTTOM}
       >
-        <Button>
+        <Button
+          style={{marginTop: 0, minWidth: '5em'}}
+        >
           <FontAwesome name="plane" />
           {
             displaySlot === false ? (<FontAwesome name="times" />) :
