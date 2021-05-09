@@ -3,12 +3,14 @@ import { createStructuredSelector } from 'reselect'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
-  DropdownButton,
-  MenuItem,
-  ButtonToolbar,
-  ButtonGroup,
   Button,
-} from 'react-bootstrap'
+  Menu,
+  MenuItem,
+  Popover,
+  Position,
+  ButtonGroup,
+  Intent,
+} from '@blueprintjs/core'
 
 import {
   showPartSelector,
@@ -18,6 +20,8 @@ import {
 } from '../../selectors'
 import { PTyp } from '../../ptyp'
 import { actionCreators } from '../../store'
+
+const boolToIntent = x => x ? Intent.PRIMARY : Intent.NONE
 
 class ViewControlImpl extends PureComponent {
   static propTypes = {
@@ -32,7 +36,7 @@ class ViewControlImpl extends PureComponent {
     modify: PTyp.func.isRequired,
   }
 
-  handleSelectAirbaseArea = area =>
+  handleSelectAirbaseArea = area => () =>
     this.props.modify(modifyObject('airbaseArea', () => area))
 
   handleToggleSquadron = sqId => () =>
@@ -66,6 +70,34 @@ class ViewControlImpl extends PureComponent {
     const areaText = airbaseArea === 'auto' ?
       `Auto (World ${autoAirbaseArea})` :
       `World ${airbaseArea}`
+
+    const areaMenuContent = (
+      <Menu>
+        <MenuItem
+          key="auto"
+          onClick={this.handleSelectAirbaseArea('auto')}
+          text={(
+            <span style={airbaseArea === 'auto' ? {fontWeight: 'bold'} : {}}>
+              {`Auto (World ${autoAirbaseArea})`}
+            </span>
+          )}
+        />
+        {
+          availableAreas.map(areaId => (
+            <MenuItem
+              key={areaId}
+              onClick={this.handleSelectAirbaseArea(areaId)}
+              text={(
+                <span style={airbaseArea === areaId ? {fontWeight: 'bold'} : {}}>
+                  {`World ${areaId}`}
+                </span>
+              )}
+            />
+          ))
+        }
+      </Menu>
+    )
+
     return (
       <div
         style={{
@@ -78,7 +110,7 @@ class ViewControlImpl extends PureComponent {
               <Button
                 key={fleetId}
                 onClick={this.handleToggleFleet(fleetId)}
-                bsStyle={showPart.fleets[fleetId] ? 'primary' : 'default'}
+                intent={boolToIntent(showPart.fleets[fleetId])}
                 style={{marginTop: 0}}
               >
                 {`Fleet #${fleetId}`}
@@ -86,48 +118,31 @@ class ViewControlImpl extends PureComponent {
             ))
           }
         </ButtonGroup>
-        <ButtonToolbar
+        <ButtonGroup
           style={{marginTop: 5}}
         >
-          <DropdownButton
-            style={{width: '10em', marginTop: 0}}
-            id="plugin-cqc-airbase-select"
-            title={areaText}
-            onSelect={this.handleSelectAirbaseArea}
+          <Popover
+            content={areaMenuContent}
+            position={Position.BOTTOM}
           >
-            <MenuItem
-              eventKey="auto"
-              key="auto">
-              <span style={airbaseArea === 'auto' ? {fontWeight: 'bold'} : {}}>
-                {`Auto (World ${autoAirbaseArea})`}
-              </span>
-            </MenuItem>
-            {
-              availableAreas.map(areaId => (
-                <MenuItem
-                  eventKey={areaId}
-                  key={areaId}>
-                  <span style={airbaseArea === areaId ? {fontWeight: 'bold'} : {}}>
-                    {`World ${areaId}`}
-                  </span>
-                </MenuItem>
-              ))
-            }
-          </DropdownButton>
-          <ButtonGroup>
-            {
-              [1,2,3].map(sqId => (
-                <Button
-                  style={{marginTop: 0}}
-                  onClick={this.handleToggleSquadron(sqId)}
-                  bsStyle={showPart.airbase[sqId] ? 'primary' : 'default'}
-                  key={sqId}>
-                  {`Sq #${sqId}`}
-                </Button>
-              ))
-            }
-          </ButtonGroup>
-        </ButtonToolbar>
+            <Button
+              style={{marginTop: 0, minWidth: '5em'}}
+            >
+              {areaText}
+            </Button>
+          </Popover>
+          {
+            [1,2,3].map(sqId => (
+              <Button
+                style={{marginTop: 0}}
+                onClick={this.handleToggleSquadron(sqId)}
+                intent={boolToIntent(showPart.airbase[sqId])}
+                key={sqId}>
+                {`Sq #${sqId}`}
+              </Button>
+            ))
+          }
+        </ButtonGroup>
       </div>
     )
   }
