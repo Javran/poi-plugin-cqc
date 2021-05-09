@@ -13,7 +13,10 @@ module.exports = {
   parser: 'babel-eslint',
   rules: {
     semi: ['error', 'never'],
-    'import/no-unresolved': [2, { ignore: ['views/.*', 'reselect', 'react-*', 'prop-types'] }],
+    'import/no-unresolved': [2, { ignore: [
+      'views/.*', 'reselect', 'react-*', 'prop-types',
+      '@blueprintjs/core', 'styled-components',
+    ] }],
     'react/jsx-filename-extension': 'off',
     'react/jsx-max-props-per-line': 'off',
     'no-restricted-syntax': ["error", {

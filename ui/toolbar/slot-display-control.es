@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
-  DropdownButton,
+  Button,
+  Menu,
   MenuItem,
-} from 'react-bootstrap'
+  Popover,
+  Position,
+} from '@blueprintjs/core'
 import FontAwesome from 'react-fontawesome'
 import { modifyObject } from 'subtender'
 import {
@@ -35,22 +38,8 @@ class SlotDisplayControl extends PureComponent {
 
   render() {
     const {displaySlot} = this.props
-    return (
-      <DropdownButton
-        style={{marginTop: 0, minWidth: '5em'}}
-        id="plugin-cqc-display-slot"
-        title={
-          <span>
-            <FontAwesome name="plane" />
-            {
-              displaySlot === false ? (<FontAwesome name="times" />) :
-              displaySlot === 'max' ? (<FontAwesome name="battery-full" />) :
-              displaySlot === 'current' ? (<FontAwesome name="battery-half" />) :
-              false
-            }
-          </span>
-        }
-      >
+    const menuContent = (
+      <Menu>
         {
           [
             ['Hidden', false],
@@ -61,17 +50,34 @@ class SlotDisplayControl extends PureComponent {
               <MenuItem
                 key={val}
                 onClick={this.handleChangeDisplaySlot(val)}
-              >
-                <span
-                  style={displaySlot === val ? {fontWeight: 'bold'} : null}
-                >
-                  {desc}
-                </span>
-              </MenuItem>
+                text={(
+                  <span
+                    style={displaySlot === val ? {fontWeight: 'bold'} : null}
+                  >
+                    {desc}
+                  </span>
+                )}
+              />
             )
           )
         }
-      </DropdownButton>
+      </Menu>
+    )
+    return (
+      <Popover
+        content={menuContent}
+        position={Position.BOTTOM}
+      >
+        <Button>
+          <FontAwesome name="plane" />
+          {
+            displaySlot === false ? (<FontAwesome name="times" />) :
+            displaySlot === 'max' ? (<FontAwesome name="battery-full" />) :
+            displaySlot === 'current' ? (<FontAwesome name="battery-half" />) :
+            false
+          }
+        </Button>
+      </Popover>
     )
   }
 }
