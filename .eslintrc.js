@@ -74,6 +74,16 @@ module.exports = {
     'consistent-return': 'off',
     'no-plusplus': 'off',
     indent: ['error', 2, {flatTernaryExpressions: true}],
+    'no-multiple-empty-lines': 'off',
+    'nonblock-statement-body-position': 'off',
+    'object-curly-newline': 'off',
+    'function-paren-newline': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'operator-linebreak': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/static-property-placement': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/jsx-wrap-multilines': 'off',
   },
   settings: {
     'import/resolver': {
