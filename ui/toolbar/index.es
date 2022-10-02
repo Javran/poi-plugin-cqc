@@ -6,6 +6,7 @@ import React, { PureComponent } from 'react'
 import { shell, clipboard } from 'electron'
 import path from 'path-extra'
 import { connect } from 'react-redux'
+
 import {
   Button,
   Menu,
@@ -55,6 +56,13 @@ class ToolbarImpl extends PureComponent {
     const encoded =
       encodeURIComponent(JSON.stringify(cqcToDeckBuilder(compo)))
     shell.openExternal(`http://kancolle-calc.net/deckbuilder.html?predeck=${encoded}`)
+  }
+
+  handleExportAircalc = () => {
+    const {compo} = this.props
+    const db = cqcToDeckBuilder(compo)
+    const encoded = JSON.stringify({predeck: db})
+    shell.openExternal(`https://noro6.github.io/kc-web#import:${encoded}`)
   }
 
   handleExportDeckBuilderClipboard = () => {
@@ -125,6 +133,10 @@ class ToolbarImpl extends PureComponent {
         <MenuItem
           onClick={this.handleExportWctf}
           text="WhoCallsTheFleet"
+        />
+        <MenuItem
+          onClick={this.handleExportAircalc}
+          text="Aircalc"
         />
       </Menu>
     )

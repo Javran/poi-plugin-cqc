@@ -2,7 +2,6 @@ import _ from 'lodash'
 
 const cqcToDeckBuilder = cqc => {
   const fleets = _.compact(cqc.fleets)
-
   const dFleets = _.fromPairs(
     fleets.map((fleet,ind) => {
       const dShips = _.fromPairs(
