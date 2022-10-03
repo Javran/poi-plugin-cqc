@@ -20,7 +20,7 @@ import fs from 'fs'
 import blobToBuffer from 'blob-to-buffer'
 import { PTyp } from '../../ptyp'
 import { currentCompoInfoSelector } from '../../selectors'
-import { cqcToDeckBuilder, cqcToWctf } from '../../misc'
+import { cqcToDeckBuilder, cqcToWctf, cqcToAircalcDeckBuilder } from '../../misc'
 import { SlotDisplayControl } from './slot-display-control'
 
 const { remote } = window
@@ -60,7 +60,7 @@ class ToolbarImpl extends PureComponent {
 
   handleExportAircalc = () => {
     const {compo} = this.props
-    const db = cqcToDeckBuilder(compo)
+    const db = cqcToAircalcDeckBuilder(compo)
     const encoded = JSON.stringify({predeck: db})
     shell.openExternal(`https://noro6.github.io/kc-web#import:${encoded}`)
   }
